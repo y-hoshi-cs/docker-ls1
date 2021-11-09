@@ -1,0 +1,25 @@
+extends base
+
+block content 
+  main.main.blog
+    .bread-crumb
+      span.bread-crumb__nav.bread-crumb--history 
+        a(href='/') Home
+      span.bread-crumb__nav.bread-crumb--current Blogs
+    .card
+      if blogs.length > 0
+        .table-wrapper.scrollable 
+          table 
+            thead
+              tr 
+                th Title
+                th Posted At
+            tbody
+              each blog in blogs 
+                tr(id= `tr-${blog.title}`)
+                  td= blog.title
+                  td= blog.updatedAt
+      else
+        .no-body
+          p 表示するデータがありません
+              

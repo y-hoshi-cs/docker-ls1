@@ -1,0 +1,13 @@
+extends base
+
+block content
+  main.main.index
+    .bread-crumb
+      span.bread-crumb__nav.bread-crumb--current Home
+        
+    .card
+      form(action='/blogs' method='POST')
+        .input-group.column
+          label(for='test') Create New Post
+          input.form-control#test(name='title')
+        button.btn.btn-primary(type='submit') Create

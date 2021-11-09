@@ -1,0 +1,37 @@
+extends base
+
+block content 
+  main.main.blog.scrollable
+    .bread-crumb
+      span.bread-crumb__nav.bread-crumb--history 
+        a(href='/') Home
+      span.bread-crumb__nav.bread-crumb--current
+        a(href='/blogs') Blogs
+      span.bread-crumb__nav.bread-crumb--current Blog
+        
+    .card
+      .blog__title 
+        h2= blog.title
+        p= blog.updatedAt
+        button.btn.btn-warning(type='submit' form='blog-update') Update
+
+      form#blog-update(action=`/blogs/${blog.title}/update` method='POST')
+        if blog.contents.length > 0
+          each content in blog.contents
+            .card-flat.appendable
+              .form-group.column
+                label SectionTitle 
+                input.form-control(type='text' name='subtitle' value=content.subtitle)
+              .form-group.column
+                label Content
+                textarea.form-control(name='body' rows='5')= content.body
+        else 
+          .card-flat.appendable
+            .form-group.column
+              label SectionTitle 
+              input.form-control(type='text' name='subtitle')
+            .form-group.column
+              label Content
+              textarea.form-control(name='body' rows='5')
+      #append-blog.append
+        p 新しいセクションを追加する
